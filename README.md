@@ -10,7 +10,7 @@ To run:
 
 ##Binary Tree
 
-```
+```javascript
 import Tree from './tree'
 import Node from './node'
 
@@ -30,10 +30,10 @@ tree.delete(11)
 
 ###API
 
-```
-insert(value)
+```javascript
+tree.insert(value)
 
-search(value)
+tree.search(value)
 
-delete(value)
+tree.delete(value)
 ```
