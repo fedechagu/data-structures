@@ -5,27 +5,24 @@ class BinarySearchTree {
     this.rootNode = rootNode
   }
 
-  traverse (node, fn) {
+  traverseInOrder (node, fn) {
     if (node) {
-      this.traverse(node.getLeft(), fn)
+      this.traverseInOrder(node.getLeft(), fn)
       fn(node.getValue())
-      this.traverse(node.getRight(), fn)
+      this.traverseInOrder(node.getRight(), fn)
     }
   }
 
-  contains (value) {
+  search (value) {
     let found = false
-
     let search = (value, node) => {
       if (node) {
-        console.log(node)
         if (value === node.getValue()) {
-          console.log('found')
           found = true
         } else if (value < node.getValue()) {
-          this.search(value, node.getLeft())
+          search(value, node.getLeft())
         } else if (value > node.getValue()) {
-          this.search(value, node.getRight())
+          search(value, node.getRight())
         }
       }
     }
@@ -34,6 +31,9 @@ class BinarySearchTree {
   }
 
   insert (value, node = this.rootNode) {
+    if (!value || isNaN(value)) {
+      throw new Error('Value to insert must be a number')
+    }
     if (!this.rootNode) {
       this.rootNode = new Node(value)
       return
@@ -68,8 +68,85 @@ class BinarySearchTree {
       list.push(val)
     }
 
-    this.traverse(this.rootNode, cb)
+    this.traverseInOrder(this.rootNode, cb)
     return list
+  }
+
+  toArrayInverse () {
+    let list = []
+    if (!this.rootNode) {
+      return list
+    }
+
+    let cb = (val) => {
+      list.unshift(val)
+    }
+
+    this.traverseInOrder(this.rootNode, cb)
+    return list
+  }
+
+  height () {
+    let leftHeight = 0
+    let rightHeight = 0
+
+    if (!this.rootNode) {
+      return 0
+    }
+
+    let calculateHeight = (node) => {
+      if (node.getLeft() !== null) {
+        leftHeight++
+        calculateHeight(node.getLeft())
+      }
+      if (node.getRight() !== null) {
+        rightHeight++
+        calculateHeight(node.getRight())
+      }
+    }
+    calculateHeight(this.rootNode)
+    return Math.max(leftHeight, rightHeight)
+  }
+
+  length () {
+    let length = 0
+    let cb = (val) => {
+      length++
+    }
+    this.traverseInOrder(this.rootNode, cb)
+    return length
+  }
+
+  min () {
+    return this._minMax('min')
+  }
+
+  max () {
+    return this._minMax('max')
+  }
+
+  _minMax (type) {
+    let val = null
+    if (!this.rootNode) {
+      return val
+    }
+    let search = (node) => {
+      if (type === 'min') {
+        if (node.getLeft() === null) {
+          val = node.getValue()
+        } else {
+          search(node.getLeft())
+        }
+      } else if (type === 'max') {
+        if (node.getRight() === null) {
+          val = node.getValue()
+        } else {
+          search(node.getRight())
+        }
+      }
+    }
+    search(this.rootNode)
+    return val
   }
 }
 
