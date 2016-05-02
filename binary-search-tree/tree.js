@@ -56,11 +56,7 @@ class BinarySearchTree {
       return list
     }
 
-    let cb = (val) => {
-      list.push(val)
-    }
-
-    this._traverseInOrder(this.rootNode, cb)
+    this.traverseInOrder((val) => list.push(val))
     return list
   }
 
@@ -70,11 +66,7 @@ class BinarySearchTree {
       return list
     }
 
-    let cb = (val) => {
-      list.unshift(val)
-    }
-
-    this._traverseInOrder(this.rootNode, cb)
+    this.traverseInOrder((val) => list.unshift(val))
     return list
   }
 
@@ -105,7 +97,7 @@ class BinarySearchTree {
     let cb = (val) => {
       length++
     }
-    this._traverseInOrder(this.rootNode, cb)
+    this.traverseInOrder(cb)
     return length
   }
 
@@ -117,11 +109,11 @@ class BinarySearchTree {
     return this._minMax('max')
   }
 
-  _traverseInOrder (node, fn) {
+  traverseInOrder (cb, node = this.rootNode) {
     if (node) {
-      this._traverseInOrder(node.getLeft(), fn)
-      fn(node.getValue())
-      this._traverseInOrder(node.getRight(), fn)
+      this.traverseInOrder(cb, node.getLeft())
+      cb(node.getValue())
+      this.traverseInOrder(cb, node.getRight())
     }
   }
 

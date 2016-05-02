@@ -3,7 +3,7 @@ Data structures implemented in javascript
 
 #Usage
 
-##Binary Tree
+##Binary Search Tree
 
 ```javascript
 import Tree from './tree'
@@ -27,49 +27,78 @@ tree.height()
 
 ```
 
-###API
+##API
 
-####Insert value into tree O(log N) 
+### Insert
+####Insert value into tree
+##### Complexity: O(log N)
+
 ```javascript
 tree.insert(value)
 ```
 
-####Search for value in tree. Returns true or false O(log N) 
+### Search
+####Search for value in tree. Returns true or false
+##### Complexity: O(log N)
+
 ```javascript
 tree.search(value)
 ```
 
-####Returns max height of tree O(N) 
+###Traversal
+####Traverse tree in order and execute a callback function on every node
+##### Complexity: O(N)
+```javascript
+tree.traverseInOrder((value) => {
+
+})
+```
+
+###Height
+####Returns height of tree
+##### Complexity: O(N)
 ```javascript
 tree.height()
 ```
 
-####Returns number of nodes in the tree O(N) 
+###Length
+####Returns number of nodes in the tree
+##### Complexity: O(N)
 ```javascript
 tree.length()
 ```
 
-####Stringify tree O(1) 
+###To String
+####Stringify tree
+##### Complexity: O(1)
 ```javascript
 tree.toString()
 ```
 
-####Returns an ordered array representing the tree O(N) 
+###To Array
+####Returns an ordered array representing the tree
+##### Complexity: O(N)
 ```javascript
 tree.toArray()
 ```
 
-####Returns an ordered array representing the tree in reverse order O(N) 
+###To Array Inverse
+####Returns an ordered array representing the tree in reverse order
+##### Complexity: O(N)
 ```javascript
 tree.toArrayInverse()
 ```
 
-####Returns min vaue O(log N) 
+###Min
+####Returns min vaue
+##### Complexity: O(log N)
 ```javascript
 tree.min()
 ```
 
-####Returns max vaue O(log N) 
+###Max
+####Returns max vaue
+##### Complexity: O(log N)
 ```javascript
 tree.max()
 ```
