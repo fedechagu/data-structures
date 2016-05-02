@@ -40,8 +40,7 @@ describe('Binary Search Tree', () => {
     })
     it('Throws exception if a non number is passed into insert()', () => {
       const tree = new BinarySearchTree()
-      tree.insert('string')
-      // TODO expect error
+      expect(() => tree.insert('string')).to.throw('Value to insert must be a number')
     })
   })
   describe('Searching', () => {
