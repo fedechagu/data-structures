@@ -66,10 +66,10 @@ tree.toArrayInverse()
 
 ####Returns min vaue O(log N) 
 ```javascript
-tree.min()()
+tree.min()
 ```
 
 ####Returns max vaue O(log N) 
 ```javascript
-tree.max()()
+tree.max()
 ```
